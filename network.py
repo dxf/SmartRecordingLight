@@ -42,3 +42,6 @@ class MIDIHandler(server.Handler):
                         state = False
                     if state == False:
                         pass
+rxServer = server.Server([('0.0.0.0', 5051)])
+rxServer.add_handler(MyHandler())
+rxServer.serve_forever()
