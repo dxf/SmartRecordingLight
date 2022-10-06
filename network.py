@@ -2,7 +2,7 @@ from pymidi import server
 import asyncio # Required for kasa library
 from kasa import SmartPlug # Smart Plug Control
 from blinkt import set_pixel, set_brightness, show, clear # Blinkt LED board controller
-set_brightness(0.2) # way too bright
+
 
 # plug = SmartPlug("127.0.0.1")
 
@@ -22,6 +22,7 @@ class MIDIHandler(server.Handler):
                     #asyncio.run(plug.turn_on) # Turn plug on
                     print('light on')
                     clear()
+                    set_brightness(0.2) # way too bright
                     for i in range(8):
                         set_pixel(i,255,0,0) # Set 8 pixels of LED board to red
                     show()
@@ -29,6 +30,7 @@ class MIDIHandler(server.Handler):
                     #asyncio.run(plug.turn_off)
                     print('light off')
                     clear()
+                    set_brightness(0.2) # way too bright
                     for i in range(8):
                         set_pixel(i,255,255,255) # Set 8 pixels of LED board to white
                     show()
