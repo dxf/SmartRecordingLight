@@ -5,7 +5,9 @@ from blinkt import set_pixel    , show, clear # Blinkt LED board controller
 
 # plug = SmartPlug("127.0.0.1")
 
+global state
 state = False
+
 # set light state to off by default
 
 class MIDIHandler(server.Handler):
