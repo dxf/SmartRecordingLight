@@ -5,7 +5,6 @@ from blinkt import set_pixel    , show, clear # Blinkt LED board controller
 
 # plug = SmartPlug("127.0.0.1")
 
-global state
 state = False
 
 # set light state to off by default
@@ -23,26 +22,26 @@ class MIDIHandler(server.Handler):
                 key = command.params.key
                 velocity = command.params.velocity
                 if velocity == 127:
-                    if state == False: # Checks light is off before triggering on signal
+                    if self.state == False: # Checks light is off before triggering on signal
                         #asyncio.run(plug.turn_on) # Turn plug on
                         print('light on')
                         clear()
                         for i in range(8):
                             set_pixel(i,255,0,0) # Set 8 pixels of LED board to red
                         show()
-                        state = True
+                        self.state = True
                     else:
                         pass
                 if velocity == 0:
-                    if state == True: # Checks light is off before triggering off signal
+                    if self.state == True: # Checks light is off before triggering off signal
                         #asyncio.run(plug.turn_off)
                         print('light off')
                         clear()
                         for i in range(8):
                             set_pixel(i,255,255,255) # Set 8 pixels of LED board to white
                         show()
-                        state = False
-                    if state == False:
+                        self.state = False
+                    if self.state == False:
                         pass
 rxServer = server.Server([('0.0.0.0', 5051)])
 rxServer.add_handler(MIDIHandler())
