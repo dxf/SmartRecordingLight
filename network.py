@@ -1,7 +1,8 @@
 from pymidi import server
 import asyncio # Required for kasa library
 from kasa import SmartPlug # Smart Plug Control
-from blinkt import set_pixel    , show, clear # Blinkt LED board controller
+from blinkt import set_pixel, set_brightness, show, clear # Blinkt LED board controller
+set_brightness(0.2) # way too bright
 
 # plug = SmartPlug("127.0.0.1")
 
